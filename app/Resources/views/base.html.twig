@@ -5,6 +5,7 @@
         <title>{% block title %}Welcome!{% endblock %}</title>
         {% block stylesheets %}
             <link rel="stylesheet" href="{{ asset('css/styles.css') }}"/>
+            <link rel="stylesheet" href="{{ asset('css/jquery.auto-complete.css') }}"/>
         {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
@@ -28,6 +29,7 @@
                         <ul class="nav navbar-nav">
                             <li class="active"><a href="{{ path('person') }}">Person <span class="sr-only">(current)</span></a></li>
                             <li ><a href="{{ path('search') }}">Search <span class="sr-only">(current)</span></a></li>
+                            <li ><a href="{{ path('jquery') }}">Search Jquery<span class="sr-only">(current)</span></a></li>
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
                             <li><a href="">Logout</a></li>
@@ -42,6 +44,7 @@
         {% block javascripts %}
             <script src="{{ asset('js/javascript.js') }}"></script>
             <script src="{{ asset('bundles/pugxautocompleter/js/autocompleter-jqueryui.js') }}"></script>
+            <script src="{{ asset('js/jquery.auto-complete.min.js') }}"></script>
         {% endblock %}
     </body>
 </html>

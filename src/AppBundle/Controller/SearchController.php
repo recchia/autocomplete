@@ -6,6 +6,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use AppBundle\Form\SearchType;
+use AppBundle\Form\JqueryType;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -62,6 +64,38 @@ class SearchController extends Controller
         $book = $em->getRepository('AppBundle:Person')->find($id);
 
         return new Response($book->getFullname());
+    }
+
+    /**
+     * @Route("/jquery", name="jquery")
+     * @Template()
+     */
+    public function jqueryAction()
+    {
+        $form   = $this->createForm(new JqueryType(), null, [
+            'action' => '',
+            'method' => 'POST'
+        ]);
+
+        return array(
+            'form'   => $form->createView(),
+        );
+    }
+
+    /**
+     * @Route("/jquery_search", name="jquery_search")
+     *
+     * @param Request $request
+     *
+     * @return array
+     */
+    public function searchJqueryAction(Request $request)
+    {
+        $q = $request->get('term');
+        $em = $this->getDoctrine()->getManager();
+        $results = $em->getRepository('AppBundle:Person')->findLikeFullnameArray($q);
+
+        return new JsonResponse(json_encode($results));
     }
 
 }

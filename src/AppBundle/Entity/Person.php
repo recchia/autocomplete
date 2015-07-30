@@ -50,7 +50,8 @@ class Person
      * Set fullname
      *
      * @param string $fullname
-     * @return Person
+     *
+*@return Person
      */
     public function setFullname($fullname)
     {
