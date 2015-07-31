@@ -83,19 +83,18 @@ class SearchController extends Controller
     }
 
     /**
-     * @Route("/jquery_search", name="jquery_search")
+     * @Route("/jquery_search/{phrase}", name="jquery_search")
      *
-     * @param Request $request
+     * @param string $phrase
      *
-     * @return array
+     * @return JsonResponse
      */
-    public function searchJqueryAction(Request $request)
+    public function searchJqueryAction($phrase)
     {
-        $q = $request->get('term');
         $em = $this->getDoctrine()->getManager();
-        $results = $em->getRepository('AppBundle:Person')->findLikeFullnameArray($q);
+        $results = $em->getRepository('AppBundle:Person')->findLikeFullnameArray($phrase);
 
-        return new JsonResponse(json_encode($results));
+        return new JsonResponse($results);
     }
 
 }

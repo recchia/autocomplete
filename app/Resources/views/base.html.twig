@@ -5,7 +5,8 @@
         <title>{% block title %}Welcome!{% endblock %}</title>
         {% block stylesheets %}
             <link rel="stylesheet" href="{{ asset('css/styles.css') }}"/>
-            <link rel="stylesheet" href="{{ asset('css/jquery.auto-complete.css') }}"/>
+            <link rel="stylesheet" href="{{ asset('css/easy-autocomplete.min.css') }}"/>
+            <link rel="stylesheet" href="{{ asset('css/easy-autocomplete.themes.min.css') }}"/>
         {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
@@ -44,7 +45,7 @@
         {% block javascripts %}
             <script src="{{ asset('js/javascript.js') }}"></script>
             <script src="{{ asset('bundles/pugxautocompleter/js/autocompleter-jqueryui.js') }}"></script>
-            <script src="{{ asset('js/jquery.auto-complete.min.js') }}"></script>
+            <script src="{{ asset('js/jquery.easy-autocomplete.min.js') }}"></script>
         {% endblock %}
     </body>
 </html>

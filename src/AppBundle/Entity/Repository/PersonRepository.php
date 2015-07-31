@@ -24,10 +24,9 @@ class PersonRepository extends EntityRepository
     public function findLikeFullnameArray($fullname)
     {
         return $this->createQueryBuilder('person_repository')
-            ->select('person_repository.fullname')
             ->where('person_repository.fullname LIKE :name')
             ->setParameter('name', '%' . $fullname . '%')
             ->getQuery()
-            ->getResult();
+            ->getArrayResult();
     }
 }
