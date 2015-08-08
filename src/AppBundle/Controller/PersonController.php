@@ -9,7 +9,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use AppBundle\Entity\Person;
 use AppBundle\Form\PersonType;
-use AppBundle\Form\SearchType;
 
 /**
  * Person controller.
@@ -244,5 +243,26 @@ class PersonController extends Controller
             ->add('submit', 'submit', array('label' => 'Delete'))
             ->getForm()
         ;
+    }
+
+    /**
+     * @param Request $request
+     *
+     * @Route("/find", name="person_find")
+     * @Method("POST")
+     */
+    public function findAction(Request $request)
+    {
+        $data = $request->request->get("appbundle_jquery");
+
+        $em = $this->getDoctrine()->getManager();
+
+        $entity = $em->getRepository('AppBundle:Person')->findOneBy(['fullname' => $data['name']]);
+
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find Person entity.');
+        }
+
+        return $this->forward('AppBundle:Person:show', ['id' => $entity->getId()]);
     }
 }

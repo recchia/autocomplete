@@ -3,7 +3,7 @@
 {% block body %}
     <div class="container col-md-8 col-md-offset-2">
         <div class="well well bs-component">
-            {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+            {{ form_start(form, { 'action' : path("person_find"), 'method' : 'post' ,'attr': {'class': 'form-horizontal'}}) }}
             <fieldset>
                 <legend>Search Person</legend>
                 <div class="form-group">
